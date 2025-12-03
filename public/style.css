@@ -1,0 +1,148 @@
+/* styles.css */
+body {
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#013a63,#0288a7);
+  color:#eef;
+}
+
+header {
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.3);
+}
+
+header h1 {
+  margin:0;
+  font-size:2em;
+}
+
+main {
+  max-width:1000px;
+  margin:0 auto;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+
+.animal {
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.animal img {
+  max-width:300px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.animal h2 {
+  margin-top:0;
+  color:#aaf;
+}
+
+.animal p {
+  max-width:800px;
+  text-align:justify;
+}
+
+.buttons {
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+button {
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.primary {
+  background:linear-gradient(90deg,#00d4ff,#66f0ff);
+  color:#013a63;
+}
+
+.ghost {
+  background:transparent;
+  border:2px solid rgba(255,255,255,0.5);
+  color:#fff;
+}
+
+footer {
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.3);
+  margin-top:30px;
+}
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.open {
+  display:flex;
+}
+
+.modal .content {
+  background:#f0ffff;
+  color:#013a63;
+  padding:20px;
+  border-radius:15px;
+  max-width:700px;
+}
+
+.chat-panel {
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:320px;
+  background:linear-gradient(180deg,#0288a7,#02b3d6);
+  border-radius:12px;
+  padding:10px;
+  color:#012a4a;
+  display:none;
+}
+
+.chat-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:bold;
+}
+
+.messages {
+  max-height:250px;
+  overflow:auto;
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.msg.user {
+  align-self:flex-end;
+  background:#fff;
+  padding:6px;
+  border-radius:8px;
+}
+
+.msg.bot {
+  align-self:flex-start;
+  background:rgba(0,0,0,0.1);
+  padding:6px;
+  border-radius:8px;
+}

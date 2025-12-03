@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resultado — Mar Lendário</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #013a63, #0288a7);
+      color: #eef;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+      color: #aaf;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      max-width: 420px;
+    }
+
+    .card img {
+      max-width: 350px;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #00d4ff, #66f0ff);
+      border: none;
+      border-radius: 12px;
+      color: #013a63;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: filter 0.3s ease;
+    }
+
+    button:hover {
+      filter: brightness(0.9);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🌊 Resultado da Análise</h1>
+  <p>Veja abaixo a emoção detectada e a imagem correspondente.</p>
+
+  <h2 id="emocaoTitle">Processando...</h2>
+  <p id="confTitle"></p>
+
+  <div class="card">
+    <img id="imagemEmocao" alt="Imagem relacionada à emoção" />
+    <button onclick="voltar()">Voltar ao início</button>
+  </div>
+
+  <script>
+    // Imagens conforme categorias (organize suas pastas iguais ao index)
+    const imagensPorEmocao = {
+      feliz: [
+        'static/mar_feliz/1.png',
+        'static/mar_feliz/2.png'
+      ],
+      triste: [
+        'static/mar_triste/3.png',
+        'static/mar_triste/4.png'
+      ],
+      neutro: [
+        'static/mar_neutro/5.png',
+        'static/mar_neutro/6.png'
+      ]
+    };
+
+    // Traduções do modelo de IA para emoções usadas no projeto
+    const traducoes = {
+      happy: 'feliz',
+      sad: 'triste',
+      neutral: 'neutro',
+      angry: 'triste',
+      fearful: 'triste',
+      disgusted: 'triste',
+      surprised: 'feliz'
+    };
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function imagemAleatoria(lista) {
+      return lista[Math.floor(Math.random() * lista.length)];
+    }
+
+    // Pega dados da URL
+    const emocaoOriginal = getQueryParam('emocao') || 'neutral';
+    const conf = getQueryParam('conf') || '0';
+
+    const emocaoTraduzida = traducoes[emocaoOriginal] || 'neutro';
+
+    // Exibe textos
+    document.getElementById('emocaoTitle').innerText =
+      emocaoTraduzida.charAt(0).toUpperCase() + emocaoTraduzida.slice(1);
+
+    document.getElementById('confTitle').innerText =
+      `Confiança do modelo: ${conf}%`;
+
+    // Mostra imagem aleatória da categoria
+    if (imagensPorEmocao[emocaoTraduzida]) {
+      document.getElementById('imagemEmocao').src =
+        imagemAleatoria(imagensPorEmocao[emocaoTraduzida]);
+    } else {
+      document.getElementById('imagemEmocao').style.display = 'none';
+    }
+
+    // Botão voltar
+    function voltar() {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
